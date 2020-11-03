@@ -34,6 +34,7 @@ correctly then the second perimeter will help cover it. For structural parts 4 p
 `Enforce 100% fill volume` is an experimental option. Refer to the in-slicer tooltip for information as this feature is subject to change.
 
 
+
 #### Quality
 `Only one perimeter on top surfaces` overrides the normal `Perimeters` setting and limits it to a single perimeter. This provides more space to the infill pattern (and ironing too if enabled).
 
@@ -73,6 +74,8 @@ correctly then the second perimeter will help cover it. For structural parts 4 p
 
 
 #### Advanced
+
+=======
 
 
 
