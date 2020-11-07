@@ -1,9 +1,3 @@
-% Print Settings
-
-This page will provide an overview of the available configuration settings in
-Slic3r. Every configuration option has a tooltip and it is recommended to read
-those tooltips. 
-
 Print Settings
 --------------
 
@@ -12,16 +6,12 @@ related to the actual print. Whereas the other tabs are changed rarely,
 the settings on this tab will be modified regularly, possibly for each
 model printed.
 
-![Print Settings: Layers and Perimeters](images/print_settings_1.png "fig:")
+![Print Settings: Layers and Perimeters](images/print_settings_1.png "Print Settings tab")
 
 
 #### Vertical Shells
 
-`Perimeters` defines the minimum number of vertical shells (i.e. walls)
-a print will have. Unless the model requires single width walls it is
-generally recommended to have a minimum of two perimeters as this gives
-some insurance that if a section of the perimeter is not printed
-correctly then the second perimeter will help cover it. For structural parts 4 perimeters may be required.
+`Perimeters` defines the minimum number of vertical shells (i.e. walls) a print will have. Unless the model requires single width walls it is generally recommended to have a minimum of two perimeters as this gives some insurance that if a section of the perimeter is not printed correctly then the second perimeter will help cover it. For structural parts 4 perimeters may be required.
 
 `Spiral Vase` is for producing decorative (but weak objects). There is only a single layer, with the nozzle continuously creeping upwards like a corkscrew.
 
@@ -75,9 +65,28 @@ correctly then the second perimeter will help cover it. For structural parts 4 p
 
 #### Advanced
 
-=======
+`No perimeters on bridge areas` is an experimental option. Refer to the in-slicer tooltip for information as this feature is subject to change.
+
+`Gap Fill` will fill small gaps where a perimeter or infill extrusion will not fit. Usually specified in % of `Perimeter` width but can also be an absolute mm<sup>2</sup>. If you do edit this (you shouldn't need to), don't go below your nozzle width.
+
+`Seam position` **detail the algorithm choice for Aligned, Random, Nearest, Rear, Corners**
+
+`Seam position - Travel move reduced` **need to give some examples on this to bring the priority aspect to life**
+
+`Looping perimeter` **not clear how this works**
+
+`Looping perimeter - Seam position` **align comments to looping perimeter**
 
 
+#### External perimeter first
+
+`Activate` This literally changes the order perimeters are printed in, from inside-out to outside-in. **when would you want to use this other than an overlap issue?**
+
+`Apply on` will assess the STL for inner faces (enclosed) or outer faces and apply External perimeter first appropriately
+
+`In vase mode` **need to test how this works in slicer - presumably to allow multi-wall prints in vase mode and still reverse the order?
+
+`Better bonding` is an experimental option. Refer to the in-slicer tooltip for information as this feature is subject to change.
 
 
 
