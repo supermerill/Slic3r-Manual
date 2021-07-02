@@ -15,7 +15,7 @@ model printed.
 ![Print Settings: Layers and Perimeters](images/print_settings_1.png "fig:")
 
 
-#### General.
+#### General
 
 `Layer height` is the thickness of each layer, and it is the step along
 the vertical axis taken before extruding a new layer atop the previous
@@ -64,7 +64,7 @@ prints, and not only be used to control surface accuracy.
 model.](images/solid_layers_vases.png "fig:")
 
 
-#### Infill.
+#### Infill
 ![Print Settings: Infill](images/print_settings_2.png "fig:")
 
 `Fill density` is from 0% to 100%.  it makes no sense to 100% fill the model
@@ -389,7 +389,7 @@ not the `Default extrusion width` setting.
 #### G-Code Output Options
 ![Print Settings: Output Options](images/print_settings_output.png "fig:")
 
-##### Sequential Printing.
+##### Sequential Printing
 
  This feature allows to compose a plate of objects but have the printer
  complete each one individually before going back to Z = 0 and starting with
