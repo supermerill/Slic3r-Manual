@@ -6,7 +6,7 @@ import time
 
 
 
-def convert(md_file, html_file):
+def convert(md_file, html_file, toc_file):
 	if md_file.endswith("toc.md"):
 		return;
 	if not md_file.endswith(".md"):
@@ -19,13 +19,13 @@ def convert(md_file, html_file):
 	subprocess.call(["pandoc", md_file, "-f", "markdown", "-t", "html", "-o", html_file,
 	"--css", "/style.css", "--title-prefix", "Slic3r Manual",
 	"--include-before-body=html-inc/header.html", 
-	"--include-before-body=html/toc.html", 
+	"--include-before-body=" +toc_file, 
 	"--include-before-body=html-inc/before-body.html", 
 	"--include-after-body=html-inc/after-body.html"]);
 
 
-def convert_dir(subdir):
-	src_dir = "src/" + subdir;
+def convert_dir(srcdir, subdir, toc_file):
+	src_dir = srcdir + subdir;
 	html_dir = "html/" + subdir;	
 	if not os.path.isdir(html_dir):
 		os.makedirs(html_dir)
@@ -37,15 +37,16 @@ def convert_dir(subdir):
 	
 	extensions = ('.md')
 	for item in os.listdir(src_dir):
+		print("check file "+item+" ("+(src_dir + item)+")");
 		if os.path.isfile(src_dir + item):
 			file = item;
 			ext = os.path.splitext(file)[-1].lower()
 			if ext in extensions:
-				convert(src_dir + file, html_dir + file)
+				convert(src_dir + file, html_dir + file, toc_file)
 		elif os.path.isdir(src_dir + item):
 			dir = item;
 			if dir != "images":
-				convert_dir(subdir + dir + "/")
+				convert_dir(srcdir, subdir + dir + "/", toc_file)
 
 
 
@@ -61,14 +62,23 @@ elif len(sys.argv) >= 2:
 
 if os.path.isdir("html"):
 	shutil.rmtree("html", ignore_errors=True);
-	time.sleep(2)
-os.makedirs("html")
+
+while os.path.isdir("html"):
+	time.sleep(1)
 # convert ToC
+os.makedirs("html")
 subprocess.call(["pandoc", "src/toc.md", "-f", "markdown", "-t", "html", "-o", "html/toc.html"]);
 
 
 # convert manual pages
-convert_dir("");
+convert_dir("src/", "", "html/toc.html");
+
+#lang
+for item in os.listdir("lang"):
+	if os.path.isdir("lang/" + item):
+		os.makedirs("html/"+item)
+		subprocess.call(["pandoc", "lang/"+item+"/toc.md", "-f", "markdown", "-t", "html", "-o", "html/"+item+"/toc.html"]);
+		convert_dir("lang/", item+"/", "html/"+item+"/toc.html");
 
 
 # copy images and stylesheet

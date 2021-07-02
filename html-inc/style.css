@@ -272,8 +272,8 @@ ol[type=i] {
 }
 
 #back-to-website a {
-	float: right;
 	text-decoration: none;
+	padding-left: 10px;
 }
 
 #manual-header {
